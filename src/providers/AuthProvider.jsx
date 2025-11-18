@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // 🔥 FIXED VERSION
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
