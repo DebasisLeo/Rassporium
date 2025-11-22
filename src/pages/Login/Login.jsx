@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 const Login = () => {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
-  const { signIn } = useContext(AuthContext);
+  const { signIn, resetPassword } = useContext(AuthContext);
 
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -30,28 +30,53 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log("Logged in user:", user);
 
         Swal.fire({
           title: "Login Successful!",
           text: "Welcome back!",
           icon: "success",
-          confirmButtonText: "OK"
         });
 
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log("Login error:", error);
-
         Swal.fire({
           title: "Error!",
           text: error.message,
           icon: "error",
-          confirmButtonText: "Try Again"
         });
       });
   };
+
+
+  const handleForgetPassword = async () => {
+    const { value: email } = await Swal.fire({
+      title: "Reset Password",
+      input: "email",
+      inputLabel: "Enter your email",
+      inputPlaceholder: "example@gmail.com",
+      showCancelButton: true
+    });
+
+    if (email) {
+      resetPassword(email)
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Password Reset Email Sent!",
+            text: "Please check your inbox.",
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Failed",
+            text: error.message,
+          });
+        });
+    }
+  };
+
 
   const handleValidateCaptcha = (e) => {
     const value = e.target.value;
@@ -87,7 +112,12 @@ const Login = () => {
               <label className="label">Password</label>
               <input type="password" name="password" className="input" placeholder="Password" required />
 
-              <div><a className="link link-hover">Forgot password?</a></div>
+              <div
+                className="link link-hover text-blue-600 cursor-pointer"
+                onClick={handleForgetPassword}
+              >
+                Forgot password?
+              </div>
 
               <label className="label">
                 <LoadCanvasTemplate />
