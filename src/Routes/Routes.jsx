@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Dashboard/cart/Cart";
 import NotFoundPage from "../pages/NotFoundPage";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import History from "../pages/History/History";
 
 
 export const router = createBrowserRouter([
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />
+      },
+      {
+        path: "allusers",
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: "history",
+        element: <History></History>
       }
       
     ]
