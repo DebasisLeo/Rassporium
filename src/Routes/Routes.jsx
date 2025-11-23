@@ -7,7 +7,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/Signup/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
-import Cart from "../pages/Dashboard/cart/Cart";
+import Cart from "../pages/Dashboard/Cart/Cart";
 import NotFoundPage from "../pages/NotFoundPage";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import History from "../pages/History/History";
